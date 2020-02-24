@@ -22,3 +22,19 @@ div.carousel-caption p, div.carousel-caption h5
     text-shadow: 0.1rem 0.1rem 0.1rem rgba(0,0,0,0.5) ;
     text-align: center;
 }
+
+.avatar{
+    max-width: 128px;
+    max-height: 128px;
+    border-radius: 50%;
+}
+
+.avatar-md{
+    max-width: 64px;
+    max-height: 64px;
+}
+
+.avatar-mini{
+    max-width: 32px;
+    max-height: 32px;
+}

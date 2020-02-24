@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
             $user->setFirstName($faker->firstName($genres));
             $user->setLastName($faker->lastName);
             $user->setEmail($faker->email);
-            $user->setPicture('https://randomuser.me/api/portraits/' . ($genre=='male' ? 'men/' : 'women/'. mt_rand(1,99)).'.jpg');
+            $user->setPicture('https://randomuser.me/api/portraits/' . (($genre=='male' ? 'men/' : 'women/'). mt_rand(1,99)).'.jpg');
             $user->setHash($hash);
             $user->setIntroduction($faker->sentence(8));
             $user->setDescription('<p>'.join('</p><p>',$faker->paragraphs(3)).'</p>');
