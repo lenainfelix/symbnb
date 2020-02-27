@@ -38,3 +38,10 @@ div.carousel-caption p, div.carousel-caption h5
     max-width: 32px;
     max-height: 32px;
 }
+
+
+
+.disabled-date{
+    color:rgb(255, 143, 143) !important;
+}
+

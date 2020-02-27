@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vous n'avez pas accès a ces informations{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>C'est quoi le projet la ? !</h1>
+        <p class='alert alert-danger'>C'est notre projet !</p>
+        <a href="{{path('homepage')}}" class="btn btn-primary"> Retour a l'accueil</a>
+    </div>
+{% endblock %}
