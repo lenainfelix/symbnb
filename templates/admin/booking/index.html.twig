@@ -1,0 +1,44 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des réservations{% endblock %}
+
+{% block body %}
+<div class="container-fluid px-5">
+    <h1 class="my-5">Gestion des réservations</h1>
+    <table class='table table-hover'>
+        <thead>
+            <tr class='d-flex '>
+                <th class='col-md-1 flex-fill'>Id</th>
+                <th class='col-md-2 flex-fill'>Réservé le</th>
+                <th class='col-md-2 flex-fill'>Réservé par</th>
+                <th class='col-md-1 flex-fill'>Arrivée le</th>
+                <th class='col-md-1 flex-fill'>Départ le</th>
+                <th class='col-md-2 flex-fill'>Annonce</th>
+                <th class='col-md-1 flex-fill'>Nbr de nuits</th>
+                <th class='col-md-1 flex-fill'>Montant</th>
+                <th class='col-md-1 flex-fill'>Actions</th>
+            </tr>
+        </thead>
+        {% for booking in bookings %}
+        <tbody>
+            <tr class='d-flex align-items-center'>
+                <th class='col-md-1 flex-fill'>{{booking.id}}</th>
+                <th class='col-md-2 flex-fill'>{{booking.createdAt | date ('d/m/Y')}}</th>
+                <th class='col-md-2 flex-fill'><img src="{{booking.booker.picture}}" class="avatar avatar-mini mr-2" alt=""> {{booking.booker.fullName}}</th>
+                <th class='col-md-1 flex-fill'>{{booking.startDate | date ('d/m/Y')}}</th>
+                <th class='col-md-1 flex-fill'>{{booking.endDate | date ('d/m/Y')}}</th>
+                <th class='col-md-2 flex-fill'>{{booking.ad.title}}</th>
+                <th class='col-md-1 flex-fill'>{{booking.duration}}</th>
+                <th class='col-md-1 flex-fill'>{{booking.amount}} &euro;</th>
+                <th class='col-md-1 flex-fill'>
+                    <a href="{{ path('admin_bookings_edit', {'id': booking.id})}}" class="btn btn-info"><i class="fas fa-pen"></i></a>
+                    <a href="{{ path('admin_bookings_delete', {'id': booking.id})}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                    {# {{ path('admin_comments_edit', {'id': comment.id})}} #}
+                </th>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

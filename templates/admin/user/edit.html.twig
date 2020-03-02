@@ -1,0 +1,26 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Modification d'un utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-5">Modification de l'utilisateur</h1>
+    </div>
+
+    <div class="container">
+        {{form_start(form)}}    
+
+        <div class="row d-flex align-items-center p-3">
+            <img src="{{user.picture}}" class='avatar ' alt="photo de {{user.firstName}} ">
+            <p class='p-3 h2'><strong> {{user.firstName}} {{user.lastName}}</strong></p>
+        </div>
+
+        {{form_row(form.picture)}}
+        {{form_row(form.introduction)}}
+        {{form_row(form.description)}}
+
+        <button type="submit" class="btn btn-success">Modifier</button>
+
+        {{form_end(form)}}    
+    </div>
+{% endblock %}

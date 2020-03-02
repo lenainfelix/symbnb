@@ -5,13 +5,37 @@
 {% block body %}
 
     <div class="container">
-        <h1>Inscrivez vous</h1>
+        <h1 class='my-5'>Inscrivez vous</h1>
 
         {{form_start(form)}}
            
-        {{form_widget(form)}}
-       
-        <button type="submit" class="btn btn-success">Créer mon compte</button>
+       <div class="row">
+            <div class="col">
+                 <div class="alert alert-light">
+                    <h2>Informations générales</h2>
+                    <hr>
+                    {{form_row(form.firstName)}}
+                    {{form_row(form.lastName)}}
+                    {{form_row(form.email)}}
+                    {{form_row(form.hash)}}
+                    {{form_row(form.passwordConfirm)}}
+                </div>
+            </div>
+            <div class="col">
+                 <div class="alert alert-light">
+                    <h2>Détails de mon profil</h2>
+                    <hr>
+                    {{form_row(form.picture)}}
+                    {{form_row(form.introduction)}}
+                    {{form_row(form.description)}}
+                </div>
+            </div>
+        </div>
+         <div class="alert alert-warning d-flex justify-content-between align-items-center">
+            <p>Un profil bien renseigné pour plus de visibilité.</p>
+            <button type="submit" class="btn btn-success "><i class="fas fa-check"></i>Valider ces informations</button>
+        </div>
+
 
         {{form_end(form)}}
     </div>

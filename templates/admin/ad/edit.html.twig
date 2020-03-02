@@ -1,0 +1,136 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Edition d'une annonce{% endblock %}
+
+{% form_theme form _self %}
+
+{% block body%}
+   <div class="container-fluid px-5">
+        <h1 class='my-5'>Modifier l'annonce : {{ad.title}}</h1>
+
+        <div class="row">
+            <div class="col card border-primary p-0 m-2">
+                <div class="card-header bg-primary">
+                    <h4 class="card-title">Informations de l'annonce</h4> 
+                </div>
+                               
+                <div class="card-body">
+                    {{form_start(form)}}
+                    
+                    {{form_widget(form)}}
+                
+                    <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+
+                    {{form_end(form)}}
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-primary p-0 m-2">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title">Réservations</h4> 
+                    </div>
+                                
+                    <div class="card-body">
+                        <table class='table table-hover'>
+                            <thead>
+                                <tr class='d-flex '>
+                                    <th class='col-md-2 flex-fill'>Réservation n°</th>
+                                    <th class='col-md-3 flex-fill'>Réservé le</th>
+                                    <th class='col-md-2 flex-fill'>par</th>
+                                    <th class='col-md-3 flex-fill'>Qui arrive le</th>
+                                    <th class='col-md-3 flex-fill'>Et repart le</th>
+                                    <th class='col-md-3 flex-fill'>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            {% for booking in ad.bookings %}
+                            <tbody>
+                                <tr class='d-flex'>
+                                    <th class='col-md-2 flex-fill'>{{booking.id}}</th>
+                                    <th class='col-md-3 flex-fill'>{{booking.createdAt | date ('d/m/Y')}}</th>
+                                    <th class='col-md-2 flex-fill'>{{booking.booker.firstName}} <br>{{booking.booker.lastName}}</th>
+                                    <th class='col-md-3 flex-fill'>{{booking.startDate | date ('d/m/Y')}}</th>
+                                    <th class='col-md-3 flex-fill'>{{booking.endDate | date ('d/m/Y')}}</th>
+                                    <th class='col-md-3 flex-fill'><a href="" class="btn btn-info"><i class="fas fa-pen"></i></a></th>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>        
+                <div class=" card border-primary p-0 m-2">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title">Commentaires</h4> 
+                    </div>
+                                
+                    <div class="card-body">
+                        <table class='table table-hover'>
+                            <thead>
+                                <tr class='d-flex '>
+                                    <th class='col-md-1 flex-fill'>Id</th>
+                                    <th class='col-md-3 flex-fill'>Commenté par</th>
+                                    <th class='col-md-3 flex-fill'>Note</th>
+                                    <th class='col-md-4 flex-fill'>Commentaire</th>
+                                    <th class='col-md-1 flex-fill'>Action</th>
+                                </tr>
+                            </thead>
+                            {% for comment in ad.comments %}
+                            <tbody>
+                                <tr class='d-flex align-items-center'>
+                                    <th class='col-md-1 flex-fill'>{{comment.id}}</th>
+                                    <th class='col-md-3 flex-fill'>{{comment.author.fullName}}</th>
+                                    <th class='col-md-3 flex-fill'>{% include 'shared/rating.html.twig' with {'rating' : comment.rating} %}</th>
+                                    <th class='col-md-4 flex-fill'>{{comment.content}}</th>
+                                    <th class='col-md-1 flex-fill'><a href="" class="btn btn-info"><i class="fas fa-pen"></i></a></th>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block _annonce_images_widget %}
+
+    {{form_widget(form)}}
+
+{% endblock %}
+
+{% block _annonce_images_entry_row %}
+
+       {{form_widget(form)}}
+
+{% endblock %}
+
+{% block _annonce_images_entry_widget %}
+  
+   <div class="row">
+       <div class="col-10">
+           <div class="row">
+               <div class="col">
+               {% if value %}
+                   <img src="{{value.url}}" class='img-fluid mb-3' alt="">
+                   
+               {% endif %}
+               </div>
+               <div class="col">
+                   {{form_widget(form.caption)}}
+               </div>
+           </div>
+       </div>
+       <div class="col">
+           <button type='button' data-action='delete' data-target='#block_{{id}}' class="btn btn-danger"><i class="fas fa-trash"></i></button>
+       </div>
+   </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="/js/ad.js"></script>
+{% endblock %}  

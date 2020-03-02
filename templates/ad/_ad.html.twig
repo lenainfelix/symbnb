@@ -3,7 +3,12 @@
                             <div class="card bg-light mb-3">
                                 <div class="card-header text-center">
                                     {{ ad.rooms }} chambres, <strong>{{ad.price}}&euro; / nuit</strong><br>
-                                    <small>Pas encore noté</small>
+                                    {% if ad.comments|length > 0  %}
+                                        {% include "shared/rating.html.twig" with {'rating' : ad.avgRatings }%}
+                                    {% else %}
+                                        <small>Pas encore noté</small>
+                                    {% endif %}
+                                   
                                 </div>
                                 <a href="{{ url }}">
                                     <img src="{{ ad.coverImage }}" alt="Image de l'appart" style='height:200px; width:100%;display:block'>
@@ -14,13 +19,17 @@
                                     </a>
                                     <p class="card-text">{{ad.introduction}}</p>
                                 </div>
-                                <a href="{{ url }}"class='btn btn-secondary'>En savoir plus</a>
-                                <a href="{{ path('booking_create',{'slug': ad.slug}) }}"class='btn btn-success mt-3'>Réserver</a>
+                                <div class="d-flex flex-column justify-content-end float-right">
+                                    <div class=" d-flex justify-content-end mr-3">
+                                        <a href="{{ url }}"class='btn btn-info w-50'>En savoir plus</a>
+                                    </div>
+                                    <a href="{{ path('booking_create',{'slug': ad.slug}) }}"class='btn btn-success mt-3'>Réserver</a>
 
-                                {% if ad.author == app.user %}
-                                    <a href="{{ path('ads_edit',{'slug': ad.slug}) }}" class="btn btn-info mt-3 ">Modifier mon annonce !</a>
-                                    <a href="{{ path('ads_delete',{'slug': ad.slug}) }}" class="btn btn-danger mt-3" onclick="return confirm(`Etes vous sure de vouloir supprimer cette annonce ?`)">Supprimer mon annonce !</a>
-                                {% endif %}
+                                    {% if ad.author == app.user %}
+                                        <a href="{{ path('ads_edit',{'slug': ad.slug}) }}" class="btn btn-info mt-3 ">Modifier mon annonce !</a>
+                                        <a href="{{ path('ads_delete',{'slug': ad.slug}) }}" class="btn btn-danger mt-3" onclick="return confirm(`Etes vous sure de vouloir supprimer cette annonce ?`)">Supprimer mon annonce !</a>
+                                    {% endif %}
+                                </div>
                                 
                             </div>
                         </div>

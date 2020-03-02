@@ -1,0 +1,8 @@
+
+{% for i in 0..4 %}
+    {% if i < rating %}
+        <i class="fas star fa-star"></i>
+    {% else %}
+        <i class="far fa-star"></i>
+    {% endif %}
+{% endfor %}

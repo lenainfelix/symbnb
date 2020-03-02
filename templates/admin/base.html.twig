@@ -4,16 +4,16 @@
         <meta charset="UTF-8">
         <meta name='viewport' content="width=device-width, user-scalable=no">
         <title>SymBnB - {% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/app.css">
+        <link rel="stylesheet" href="/css/adminBootstrap.min.css">
+        <link rel="stylesheet" href="/css/adminApp.css">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% include "shared/header.html.twig" %}
+        {% include "admin/shared/header.html.twig" %}
       
         {% block header %} {% endblock %}
         {% block body %}{% endblock %}
-        {% include "shared/footer.html.twig" %}
+        {% include "admin/shared/footer.html.twig" %}
 
         <script src='/js/jquery.min.js'></script>
         <script src="https://kit.fontawesome.com/ef2396f5c6.js" crossorigin="anonymous"></script>

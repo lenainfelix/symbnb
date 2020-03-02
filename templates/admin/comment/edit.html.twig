@@ -1,0 +1,85 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Edition d'un commentaire{% endblock %}
+
+{% block body%}
+   <div class="container-fluid px-5">
+        <h1 class='my-5'>Modifier Le commentaire.</h1>
+
+        <div class="row">
+            <div class="col card border-primary p-0 m-2">
+                <div class="card-header bg-primary">
+                    <h4 class="card-title">Détails du commentaire</h4> 
+                </div>
+                               
+                <div class="card-body">
+
+                    <p><strong>Annonce lié :</strong> {{ comment.ad.title}}</p>
+                    <p><strong>Date du commentaire :</strong> {{ comment.createdAt | date ('d/m/Y')}}</p>
+                    <p><strong>Note donnée :</strong> {% include 'shared/rating.html.twig' with {'rating' : comment.rating} %} </p>
+                    
+                    {{form_start(form)}}
+                    
+                    {{form_widget(form)}}
+                
+                    <button type="submit" class="btn btn-success">Enregistrer les modifications</button>
+
+                    {{ form_end(form) }}
+                    
+                </div>
+            </div>
+            <div class="col">
+                <div class="card border-primary p-0 m-2">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title">Auteur</h4> 
+                    </div>
+                                
+                    <div class="card-body">
+                        <div class="row d-flex">
+                            <div class=" p-3">
+                                <img src="{{comment.author.picture}}" class="avatar avatar-md" alt="photo de {{comment.author.picture}} ">
+                            </div>
+                            <div class="p-3">
+                                <h4>{{comment.author.fullName}}</h4>
+                                <p>{{comment.author.introduction}}</p>
+                            
+                            </div>
+                        </div>
+                        <p>{{comment.author.description | raw}}</p>
+                    </div>
+                </div>        
+                {# <div class=" card border-primary p-0 m-2">
+                    <div class="card-header bg-primary">
+                        <h4 class="card-title">Commentaires</h4> 
+                    </div>
+                                
+                    <div class="card-body">
+                        <table class='table table-hover'>
+                            <thead>
+                                <tr class='d-flex '>
+                                    <th class='col-md-1 flex-fill'>Id</th>
+                                    <th class='col-md-3 flex-fill'>Commenté par</th>
+                                    <th class='col-md-3 flex-fill'>Note</th>
+                                    <th class='col-md-4 flex-fill'>Commentaire</th>
+                                    <th class='col-md-1 flex-fill'>Action</th>
+                                </tr>
+                            </thead>
+                            {% for comment in ad.comments %}
+                            <tbody>
+                                <tr class='d-flex align-items-center'>
+                                    <th class='col-md-1 flex-fill'>{{comment.id}}</th>
+                                    <th class='col-md-3 flex-fill'>{{comment.author.fullName}}</th>
+                                    <th class='col-md-3 flex-fill'>{% include 'shared/rating.html.twig' with {'rating' : comment.rating} %}</th>
+                                    <th class='col-md-4 flex-fill'>{{comment.content}}</th>
+                                    <th class='col-md-1 flex-fill'><a href="" class="btn btn-info"><i class="fas fa-pen"></i></a></th>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    
+                </div> #}
+            </div>
+        </div>
+    </div>
+{% endblock %}
