@@ -19,7 +19,7 @@
                 <th class='col-md-1 flex-fill'>Actions</th>
             </tr>
         </thead>
-        {% for booking in bookings %}
+        {% for booking in pagination.data %}
         <tbody>
             <tr class='d-flex align-items-center'>
                 <th class='col-md-1 flex-fill'>{{booking.id}}</th>
@@ -39,6 +39,7 @@
         </tbody>
         {% endfor %}
     </table>
+     {{pagination.display()}}
 </div>
 
 {% endblock %}

@@ -23,7 +23,7 @@
                 <th class="col-md-1">Actions</th>
             </tr>
         </thead>
-        {% for user in users %}  
+        {% for user in pagination.data %}  
             <tbody>
                 <tr class="d-flex " >
                     <td class="col-md-1">{{user.id}}</td>
@@ -45,6 +45,7 @@
             </tbody>
         {% endfor %}
     </table>
+    {{pagination.display()}}
 </div>
 
 {% endblock %}
